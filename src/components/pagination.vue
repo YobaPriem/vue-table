@@ -1,12 +1,20 @@
 <template>
     <footer>
         <nav>
-            <a
-                v-for='id in amountPages'
-                :key='id'
-                :href=' "#" + id'
-                @click='handleClick(id)'
-            >{{ id }}</a>
+            <ul class="pagination">
+                <li
+                    v-for='id in amountPages'
+                    :key='id'
+                    class="page-item"
+                    :class="{active: id === currentPage}"
+                >
+                    <a
+                        :href=' "#" + id'
+                        @click='handleClick(id)'
+                        class="page-link"
+                    >{{ id }}</a>
+                </li>
+            </ul>
         </nav>
     </footer>
 </template>
@@ -20,12 +28,14 @@ export default {
     },
     data () {
         return {
+            currentPage: 1
         }
     },
     computed: {
     },
     methods: {
         handleClick: function(value) {
+            this.currentPage = value
             this.$emit('setPage', value)
         },
     },
@@ -33,21 +43,3 @@ export default {
     }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

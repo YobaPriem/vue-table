@@ -1,24 +1,23 @@
 # oxem-table
 
-## Project setup
-```
-yarn install
+Написано без использования сторонних библиотек. Только bootstrap для минимальной стилизации.
+
+## Тестирование
+
+Из тестов делал только unit на jest'е. Сами тесты лежат [тут](./tests/unit).
+
+Для запуска
+```console
+npm run test:unit
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Docker
 
-### Compiles and minifies for production
+1. Сборка образа -
+```console
+docker build -t oxem-table
 ```
-yarn build
+2. Запуск на порту 8080 -
+```console
+docker run -it -p 8080:80 --rm --name oxem-table oxem-table
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

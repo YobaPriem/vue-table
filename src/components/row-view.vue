@@ -1,63 +1,34 @@
 <template>
-    <div class=" table-responsive">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr scope="row">
-                    <th
-                        scope="col"
-                        v-for='(title, titleId) in titles'
-                        :key='titleId'
-                    >
-                        {{ title }}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td v-for='(cell, cellId) in Object.values(row)' :key='cellId'>
-                        {{ typeof cell === 'object' ? Object.values(cell).join(' ') : cell }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="">
+        <p>Выбран пользователь <b>{{ row.firstName }} {{ row.lastName }}</b></p>
+        <p>Описание:</p>
+        <textarea v-model='description' readonly></textarea>
+        <p>Адрес проижвания: <b>{{ row.address.streetAddress }}</b></p>
+        <p>Город: <b>{{  row.address.city }}</b></p>
+        <p>Провинция/штат: <b>{{  row.address.state }}</b></p>
+        <p>Индекс: <b>{{  row.address.state }}</b></p>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Row-view',
-    emits: ['setRowView'],
     props: {
         row: Object
     },
     data () {
         return {
+            description: ''
         }
     },
     computed: {
-        titles: function() {
-            return Object.keys(this.row)
-        },
     },
     methods: {
+    },
+    watch: {
+        row: function() {
+            this.description = this.row.description
+        }
     }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

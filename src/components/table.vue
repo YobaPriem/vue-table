@@ -9,8 +9,8 @@
                         :key='titleId'
                         @click='handleSort(title)'
                     >
-                        <span v-html='showDirectionPointer(title)'></span>
                         {{ title }}
+                        <span class="sort-pointer" v-html='showDirectionPointer(title)'></span>
                     </th>
                 </tr>
             </thead>
@@ -88,18 +88,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+    th {
+        position: relative;
+        padding-right: 20px !important;
+    }
+
+    .sort-pointer {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 15px;
+        height: 21px;
+        display: inline-block;
+    }
 </style>

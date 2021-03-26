@@ -1,7 +1,11 @@
 <template>
     <section class="container-fluid px-4">
+        <div v-if='isLoading' class="spinner-container d-flex justify-content-center align-items-center">
+            <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
         <div class="row">
-            <div v-if='isLoading'>Грузим</div>
             <Controls :amountItems='items.length'
                 @setUrl='handleUrl'
                 @setQuery='handleQuery'
@@ -10,7 +14,7 @@
             <Table v-if='searchedItems.length > 0' :items='offsetItems' @setSort='handleSort' @setRowView='handleRowView'/>
             <Pagination v-if='amountPages > 1' :amountPages='amountPages' @setPage='handlePage'/>
             <Form v-if='showForm' @setRow='handleInsertRow' @setForm='handleForm'/>
-            <RowView v-if='rowView' :row='rowView' />
+            <RowView v-if='Object.keys(rowView).length > 0' :row='rowView' />
         </div>
     </section>
 </template>
@@ -153,3 +157,19 @@ export default {
     }
 }
 </script>
+
+<style>
+    .container-fluid {
+        position: relative;
+    }
+
+    .spinner-container  {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.6);
+        z-index: 1;
+    }
+</style>
