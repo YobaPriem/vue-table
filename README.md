@@ -22,7 +22,7 @@ npm run test:unit
 
 1. Сборка образа -
 ```console
-docker build -t oxem-table
+docker build -t oxem-table .
 ```
 2. Запуск на порту 8080 -
 ```console
